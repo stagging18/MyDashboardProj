@@ -1,0 +1,16 @@
+.grid-item {
+	border: solid 1px;
+}
+
+.handle {
+	width: 100%;
+	height: auto;
+	background: blue;
+	color: white;
+	padding: 12px !important;
+	box-sizing: border-box;
+}
+
+.btn {
+	margin-left: 10px;
+}

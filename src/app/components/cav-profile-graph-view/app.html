@@ -1,0 +1,6 @@
+<div [ngGrid]="gridConfig">
+	<div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)" (onDrag)="onDrag(i, $event)">
+		<div class="handle"></div>
+		<chart [options]="options"></chart>
+	</div>
+</div>
