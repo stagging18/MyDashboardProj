@@ -16,8 +16,11 @@
                     <md-icon  class="remove-icon" *ngIf="showAdd[box.id]">remove</md-icon><md-icon *ngIf="!showAdd[box.id]">add</md-icon>
                 </button>
 			</div>
+            <div *ngIf="[box.id]==1">
+                <test-run-info></test-run-info>
+            </div>
 			<!--Header ends now put all components here-->
-            <chart [options]="options"></chart>
+            <!--<chart [options]="options"></chart>-->
 	    </div>
     </div>
 </div>

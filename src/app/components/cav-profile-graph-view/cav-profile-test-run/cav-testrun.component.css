@@ -1,0 +1,221 @@
+
+.test-card
+{
+background-color: #9661ed;
+margin-top:7px !important;
+padding-top:0px !important;
+padding-bottom:16px;
+line-height:20px;
+height:17px;
+
+}
+.first-heading
+{
+font-size:12px;
+float:left;
+ 
+}
+.second-heading
+{
+font-size:12px;
+margin-left:76px;
+float:left;
+margin-top: 0px;
+
+
+}
+.third-heading
+{
+    font-size:12px;
+    margin-left:38px;
+    margin-right:38px;
+    float:right;
+    margin-top:0px;
+}
+.first-small-card
+{
+    background-color:gainsboro;
+    margin-left:10px !important;
+    margin-top:2% !important;
+    width:17%;
+    padding-top:3%;
+}
+.second-small-card
+{
+    background-color: silver;
+    margin-top:-36px;
+    margin-left:34%;
+    width: 17%;
+    padding-top:3%;
+    
+    height:0px;
+}
+.third-small-card
+{
+    background-color: lightgrey;
+    width: 17%;
+    float:right;
+    margin-top:-36px;
+    margin-right:6%;
+    padding-top:3%;
+    height:0px;
+
+}
+.fourth-small-card
+{
+    background-color: gainsboro;
+    width:17%;
+    margin-left:72px;
+    margin-top:5px;
+    padding-top:3%;
+
+}
+.fifth-small-card
+{
+    background-color:gainsboro;
+    width:17%;
+    float:right;
+    padding-top:3%;
+    margin-right:94px;
+    margin-top:-36px;
+    height:0px;
+}
+.details-btn
+{
+	background-color: #9661ed;
+	color:black;
+    float:right;
+    margin-right:-209px;
+    font-size:9px;
+    width:85px;
+    height:28px;
+    margin-top:-3px;
+}
+.data-test-no
+{
+    font-size:12px;
+    margin-left:-55px;
+    float:left;
+    margin-top:16px;
+}
+.data-test-name
+{
+    font-size:12px;
+    float:left;
+    margin-left:-41px;
+    margin-top:15px;
+    
+}
+.data-status
+{
+    font-size:12px;
+    margin-right:-79px;
+    margin-top:14px;
+    float:right;
+
+}
+.total-test
+{
+
+    font-size:10px;
+    margin-top:10px;
+    float:left;
+}
+.first-icon
+{
+    color:black;
+    margin-left:-20px;
+    margin-top:-13px;
+    float:left;
+
+}
+.second-icon
+{
+      color:black;
+    margin-left:-20px;
+    margin-top:-34px;
+    float:left;
+
+}
+.locked-tests
+{
+font-size:10px;
+margin-left:5px;
+margin-top:11px;
+float:right;
+
+
+}
+.third-icon
+{
+ color:black;
+ margin-left:-21px;
+ margin-top:-14px;
+ float:left;
+}
+.fourth-icon
+{
+    color:black;
+ margin-left:-21px;
+ margin-top:-14px;
+ float:left;
+}
+ .fifth-icon
+{
+ color:black;
+ margin-left:-117px;
+ margin-top:-14px;
+ float:left;
+}
+.archieve-tests
+{
+    font-size:10px;
+    float:left;
+    margin-top:-9px;
+}
+.total-scripts
+{
+    font-size:10px;
+    float:left;
+    margin-top:12px;
+}
+.total-scenarios
+{
+    font-size:9px;
+    float:left;
+    margin-top:12px;
+}
+.total-test-data{
+    font-size:13px;
+    float:right;
+    margin-top:-29px;
+    margin-right:12px;
+}
+.archieve-test-data
+{
+       font-size:13px;
+    float:right;
+    margin-top:-33px;
+    margin-right:3px;
+}
+.locked-test-data
+{
+    font-size:13px;
+    float:right;
+    margin-top:-32px;
+    margin-right:12px;
+}
+.scripts-data
+{
+    font-size:13px;
+    float:right;
+    margin-top:-29px;
+    margin-right:12px;  
+}
+.scenarios-data
+{
+    font-size:13px;
+    float:right;
+    margin-top:-29px;
+    margin-right:12px; 
+}

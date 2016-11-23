@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {NgModule, ApplicationRef} from '@angular/core';
+import {NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
@@ -22,6 +22,8 @@ import { CavMenuNavigatorService } from './services/cav-menu-navigator.service';
 import { CavMenuComponent } from './components/cav-menu/cav-menu.component';
 import { CavMenuItemComponent } from './components/cav-menu-item/cav-menu-item.component';
 
+import {CavProfileGraphTestRun} from './components/cav-profile-graph-view/cav-profile-test-run/cav-profile-graph-testrun.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +34,7 @@ import { CavMenuItemComponent } from './components/cav-menu-item/cav-menu-item.c
     CavMainMenuNavignationComponent,
     CavMenuComponent,
     CavMenuItemComponent,
+	  CavProfileGraphTestRun,
   ],
   entryComponents: [
     AppComponent,
@@ -50,7 +53,8 @@ import { CavMenuItemComponent } from './components/cav-menu-item/cav-menu-item.c
     { provide: LoggerOptions, useValue: { level: LoggerLevel.INFO } },
     Logger,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 

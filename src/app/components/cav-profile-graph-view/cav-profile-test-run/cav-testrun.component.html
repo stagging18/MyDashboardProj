@@ -1,0 +1,98 @@
+<div layout="row" layout-margin layout-wrap layout-align="center center">
+  <md-card class="test-card">
+    <md-card-title>
+      <md-card-title-text>
+        <span class="first-heading">Test Run No. </span>
+        <div> 
+          <span class="data-test-no">{{testRunJson.runningTestRunNo}}</span>
+        </div>
+        <span class="second-heading">Test Name</span>
+        <div> 
+          <span class="data-test-name">{{testRunJson.testName}}</span>
+        </div>
+        <span class="third-heading">Status</span>
+        <div>
+           <span class="data-status">{{testRunJson.status}}</span>
+        </div>
+      </md-card-title-text>
+    </md-card-title>
+  </md-card>
+  <md-card class ="first-small-card" >
+    <md-card-title>
+      <md-card-title-text>
+        <span >
+          <md-icon class="first-icon">done</md-icon>
+        </span>
+        <div> 
+          <span class="total-test">Total tests</span>
+        </div>
+        <div>
+          <span class="total-test-data">{{testRunJson.totalTestRunList}}</span>
+        </div>
+      </md-card-title-text>
+    </md-card-title>
+  </md-card>
+  <md-card class ="second-small-card" >
+    <md-card-title>
+      <md-card-title-text>
+        <span>
+          <md-icon class="second-icon">radio</md-icon>
+        </span>
+        <div> 
+          <span class="archieve-tests">Archieve tests</span>
+        </div>
+        <div>
+          <span class="archieve-test-data">{{testRunJson.totalArchiveTests}}</span>
+        </div>
+      </md-card-title-text>
+    </md-card-title>
+  </md-card>
+  <md-card class ="third-small-card" >
+    <md-card-title>
+      <md-card-title-text>
+        <span >
+          <md-icon class="third-icon">https</md-icon>
+        </span>
+        <div> 
+          <span class="locked-tests">Locked tests</span>
+        </div>
+        <div>
+          <span class="locked-test-data">{{testRunJson.totalLockedTests}}</span>
+        </div>
+      </md-card-title-text>
+    </md-card-title>
+  </md-card>
+  <md-card class ="fourth-small-card">
+    <md-card-title>
+      <md-card-title-text>
+        <span >
+          <md-icon class="fourth-icon">message</md-icon>
+        </span>      
+        <div>
+          <span class="total-scripts">Total Scripts</span>
+        </div>
+        <div>
+          <span class="scripts-data">{{testRunJson.totalScripts}}</span>
+        </div>
+      </md-card-title-text>
+    </md-card-title>
+  </md-card>
+  <md-card class ="fifth-small-card">
+    <md-card-title>
+      <md-card-title-text>
+        <span >
+          <md-icon class="fifth-icon">sitemap</md-icon>
+        </span> 
+        <div>
+          <span class="total-scenarios">Total Scenarios</span>
+        </div>
+        <div>
+          <span class="scenarios-data">{{testRunJson.totalScenarios}}</span>
+        </div>
+      </md-card-title-text>
+    </md-card-title>
+  </md-card>
+  <button md-button class="details-btn">
+     Show Details
+  </button>
+</div>
