@@ -1,6 +1,23 @@
-<div [ngGrid]="gridConfig">
-	<div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)" (onDrag)="onDrag(i, $event)">
-		<div class="handle"></div>
-		<chart [options]="options"></chart>
-	</div>
+<div class="container">
+    <div [ngGrid]="gridConfig">
+		<!--Looping the boxes to create the layouts-->
+	    <div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)" (onResizeStop)="onResizeStop($event)" (onDrag)="onDrag(i, $event)">
+		    <!--This is the header part of all widgets-->
+			<div class="handle">
+				<!--Here we are setting the header name for all widgets -->
+			    <h4 class="header">{{box.config.name}}</h4>
+				<button md-icon-button class="cross-btn" (click)="removeBox(box.id)">
+                    <md-icon class="clear-icon">clear</md-icon>
+                </button>
+                <button md-icon-button class="maximize-btn" (click)="openDialogBox()">
+                    <md-icon class="web-asset-icon">web_asset</md-icon>
+                </button>
+                <button md-icon-button class="minimize-btn" (click)="minimizeBox(box.id)">
+                    <md-icon  class="remove-icon" *ngIf="showAdd[box.id]">remove</md-icon><md-icon *ngIf="!showAdd[box.id]">add</md-icon>
+                </button>
+			</div>
+			<!--Header ends now put all components here-->
+            <chart [options]="options"></chart>
+	    </div>
+    </div>
 </div>

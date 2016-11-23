@@ -4,13 +4,75 @@
 
 .handle {
 	width: 100%;
-	height: auto;
-	background: blue;
+	height: 30px !important;
+	background: black;
 	color: white;
-	padding: 12px !important;
+	padding: 3px;
 	box-sizing: border-box;
+	
+}
+.header
+{
+	color:white;
+	line-height: 0px ;
+	margin-top:12px; 
+	font-size: 12px ;
+	float: left ;
+	font-style:normal;
+	font-weight:100;
+	font-family: 'Roboto', sans-serif;
+	
+}
+
+.alert-header
+{
+	color:white;
+	line-height: 0px ;
+	margin-top:12px; 
+	font-size: 12px;
+	float: left ;
+	font-style:normal;
+	font-weight:100;
+	font-family: 'Roboto', sans-serif;
 }
 
 .btn {
 	margin-left: 10px;
+}
+
+.cross-btn
+{
+	height:20px !important;
+	float:right !important;
+
+}
+
+.minimize-btn
+{
+	height:20px;
+	margin-right: -16px !important;
+	float: right;
+}
+
+.maximize-btn
+{
+	height: 20px;
+	float:right;
+	margin-right: -15px !important;
+	font-size:xx-small !important;
+}
+.clear-icon
+{
+	font-size:19px;
+	padding-top:3px;
+}
+.web-asset-icon
+{
+	font-size:19px;
+	padding-top:3px;
+}
+.remove-icon
+{
+	font-size:19px;
+	padding-top:3px;
 }

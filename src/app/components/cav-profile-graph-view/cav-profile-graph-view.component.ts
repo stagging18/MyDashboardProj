@@ -3,9 +3,9 @@ import {NgGrid, NgGridItem} from 'angular2-grid';
 import {NgGridConfig,NgGridItemConfig,NgGridItemEvent, NgLayoutGridOptions} from "./interfaces/INgGrid";
 import {CavLayoutService} from "../../services/cav-layout-provider.service";
 import {CavMenuNavigatorService} from "../../services/cav-menu-navigator.service";
-import {Http, Response} from '@angular/http';
 import {Observable, } from 'rxjs/Rx';
 import { Subscription }   from 'rxjs/Subscription';
+import {LayoutType, PanelLayout, WidgetStructor} from "./interfaces/JsonLayoutDto";
 
 
 interface Box {
@@ -22,8 +22,8 @@ interface Box {
 
 export class CavProfileGraphViewComponent implements OnInit {
 
-/**This is the lay out json which will be called by using REST call. Later we will remove it */
-layoutJson:Object = {"layoutName":"default.layout","layoutType":"System","layoutId":1,"columns":12,"rows":12,"col_width":98,"row_height":42,"panelLayout":{"id":"1","name":"Home","widgets":[{"name":"","row":1,"col":1,"sizeX":4,"sizeY":4,"widgetId":0},{"name":"","row":1,"col":5,"sizeX":4,"sizeY":4,"widgetId":1},{"name":"","row":1,"col":9,"sizeX":4,"sizeY":4,"widgetId":2},{"name":"","row":5,"col":1,"sizeX":4,"sizeY":4,"widgetId":3},{"name":"","row":5,"col":5,"sizeX":4,"sizeY":4,"widgetId":4},{"name":"","sizeX":4,"sizeY":4,"row":5,"col":9,"widgetId":5},{"name":"","row":9,"col":1,"sizeX":4,"sizeY":4,"widgetId":6},{"name":"","row":9,"col":5,"sizeX":4,"sizeY":4,"widgetId":7},{"name":"","row":9,"col":9,"sizeX":4,"sizeY":4,"widgetId":8}]}};
+private showAdd: Array<boolean> = [];
+public TodoItems: LayoutType;
 
 /**This is for the chart available inside the widget */
 chartHeight:number = 180;
@@ -45,19 +45,24 @@ options: Object = {credits:{enabled: false},chart: {type:"area",margin:[30,-50,6
 
   
   private boxes: Array<Box> = [];
+  private max_rows:number = 12;
+  private max_column:number = 12;
+  private col_width:number = 98;
+  private row_height:number = 42;
+
 	private curNum: number = 5;
 	private gridConfig: NgGridConfig = <NgGridConfig>{
     'margins': [4],            //  The size of the margins of each item. Supports up to four values in the same way as CSS margins. Can be updated using setMargins()
     'draggable': true,          //  Whether the items can be dragged. Can be updated using enableDrag()/disableDrag()
     'resizable': true,          //  Whether the items can be resized. Can be updated using enableResize()/disableResize()
-    'max_cols': 12,              //  The maximum number of columns allowed. Set to 0 for infinite. Cannot be used with max_rows
-    'max_rows': this.layoutJson["rows"],              //  The maximum number of rows allowed. Set to 0 for infinite. Cannot be used with max_cols
+    'max_cols': this.max_column,              //  The maximum number of columns allowed. Set to 0 for infinite. Cannot be used with max_rows
+    'max_rows': this.max_rows,              //  The maximum number of rows allowed. Set to 0 for infinite. Cannot be used with max_cols
     'visible_cols': 3,          //  The number of columns shown on screen when auto_resize is set to true. Set to 0 to not auto_resize. Will be overriden by max_cols
     'visible_rows': 3,          //  The number of rows shown on screen when auto_resize is set to true. Set to 0 to not auto_resize. Will be overriden by max_rows
     'min_cols': 0,              //  The minimum number of columns allowed. Can be any number greater than or equal to 1.
     'min_rows': 0,              //  The minimum number of rows allowed. Can be any number greater than or equal to 1.
-    'col_width': this.layoutJson["col_width"],           //  The width of each column
-    'row_height': this.layoutJson["row_height"],          //  The height of each row
+    'col_width': this.col_width,           //  The width of each column
+    'row_height': this.row_height,          //  The height of each row
     'cascade': 'up',            //  The direction to cascade grid items ('up', 'right', 'down', 'left')
     'min_width': 0,           //  The minimum width of an item. If greater than col_width, this will update the value of min_cols
     'min_height': 0,          //  The minimum height of an item. If greater than row_height, this will update the value of min_rows
@@ -76,8 +81,8 @@ private _generateDefaultItemConfig(): NgGridItemConfig {
     'sizex': 4,             //  The start width in terms of columns for the item
     'sizey': 4,             //  The start height in terms of rows for the item
 	'name':"",
-	'widgetId':"",
-    'dragHandle': null,     //  The selector to be used for the drag handle. If null, uses the whole item
+	'widgetId':0,
+    'dragHandle': '.handle',     //  The selector to be used for the drag handle. If null, uses the whole item
     'resizeHandle': null,   //  The selector to be used for the resize handle. If null, uses 'borderSize' pixels from the right for horizontal resize,
                             //    'borderSize' pixels from the bottom for vertical, and the square in the corner bottom-right for both
     'borderSize': 15,
@@ -97,11 +102,11 @@ private _generateDefaultItemConfig(): NgGridItemConfig {
 
     /**This  method will return a default configuration for every widget.
 	 * This will be used while saving the users layout to server.
-	 * This will srerve the confuguration for every widget.
+	 * This will serve the confuguration for every widget.
 	 */
 	private _generateLayOutItemConfig(): NgLayoutGridOptions 
 	{
-		return {'col': 1, 'row': 1, 'sizeX': 4, 'sizeY': 4,'name':"",'widgetId':""};
+		return {'col': 1, 'row': 1, 'sizeX': 4, 'sizeY': 4,'name':'','widgetId':0};
 	}
 
 	private curItemCheck: number = 0;
@@ -111,9 +116,14 @@ private _generateDefaultItemConfig(): NgGridItemConfig {
 		/** it is important to have this subscribe call, since the request is only made if there is a subscriber  */ 
 		//http.get('http://10.10.50.2:8001/DashboardServer/web1/file/layoutjson').map((res: Response) => res.json()).subscribe(res => this.drawLayoutFromJson(res));
 		/**Here we are getting the layout json for the product UI gui */
-		cavLayoutService.getdefaultLayout().subscribe(res => this.drawLayoutFromJson(res));
-
-		  this.newSubscription = cavMenuNavigatorService.toggleClickPersonTestProvider$.subscribe(
+		if(this.cavLayoutService.getLayOutResponse() == null){ /**Means there is no layout json available in service */
+            cavLayoutService.getdefaultLayout().subscribe(res => this.drawLayoutFromJson(res));
+		}
+		else{  /**If the layout data is already available then no need to do request for Layout json*/
+			this.drawLayoutFromJson(cavLayoutService.getdefaultLayout());
+		}
+		
+		this.newSubscription = cavMenuNavigatorService.toggleClickPersonTestProvider$.subscribe(
               /*Getting Event Here.*/
               value1 => {this.saveUserLayoutToServer()}
 		  );
@@ -159,20 +169,37 @@ private _generateDefaultItemConfig(): NgGridItemConfig {
 	drawLayoutFromJson(res:any): void
 	{
 		/**Set the response layout json to layoutjson variable */
-		this.layoutJson = res;
+		//this.layoutJson = res;
+		this.TodoItems = res;
 
-        for (var i = 0; i < this.layoutJson["panelLayout"]["widgets"].length; i++) 
+		this.max_column = this.TodoItems.columns;
+		this.max_rows = this.TodoItems.rows;
+		this.row_height = this.TodoItems.row_height;
+		this.col_width = this.TodoItems.col_width;
+		
+		this.cavLayoutService.setLayOutResponse(this.TodoItems);
+
+        for (var i = 0; i < this.TodoItems.panelLayout.widgets.length; i++) 
 		{
 			/**Creating the default configuration object for every widget */
 			const conf = this._generateDefaultItemConfig();
 
             /**Setting the row column sizeX sizeY value for every widget */
-            conf.row = this.layoutJson["panelLayout"]["widgets"][i].row;
+            /*conf.row = this.layoutJson["panelLayout"]["widgets"][i].row;
 			conf.col = this.layoutJson["panelLayout"]["widgets"][i].col;
 			conf.sizex = this.layoutJson["panelLayout"]["widgets"][i].sizeX;
 			conf.sizey = this.layoutJson["panelLayout"]["widgets"][i].sizeY;
 			conf.name = this.layoutJson["panelLayout"]["widgets"][i].name;
-			conf.widgetId = this.layoutJson["panelLayout"]["widgets"][i].widgetId;
+			conf.widgetId = this.layoutJson["panelLayout"]["widgets"][i].widgetId;*/
+
+			conf.row = this.TodoItems.panelLayout.widgets[i].row;
+			conf.col = this.TodoItems.panelLayout.widgets[i].col;
+			conf.sizex = this.TodoItems.panelLayout.widgets[i].sizeX;
+			conf.sizey = this.TodoItems.panelLayout.widgets[i].sizeY;
+			conf.name = this.TodoItems.panelLayout.widgets[i].name;
+			conf.widgetId = this.TodoItems.panelLayout.widgets[i].widgetId;
+			
+			this.showAdd[i+1]=true;
 			
 			this.boxes[i] = { id: i + 1, config: conf };
 			//console.log(conf);
@@ -204,12 +231,20 @@ private _generateDefaultItemConfig(): NgGridItemConfig {
 		this.boxes.push({ id: conf.payload, config: conf });
 	}
 	
-	removeBox(id: number): void {
-		/*if (this.boxes[this.curItemCheck]) {
+	/*removeBox(id: number): void {
+		if (this.boxes[this.curItemCheck]) {
 			this.boxes.splice(this.curItemCheck, 1);
-		}*/
+		}
 
 		//for loop
+	}*/
+
+	removeBox(id:number): void {
+        for(var i=0;i<this.boxes.length;i++){
+            if(this.boxes[i].id == id){
+                this.boxes.splice(i,1);
+			}
+		}
 	}
 	
 	updateItem(index: number, event: NgGridItemEvent): void {
@@ -226,8 +261,25 @@ private _generateDefaultItemConfig(): NgGridItemConfig {
 		this.chartHeight = event.height-4;
 		
 	}
+
+	onResizeStop(item:NgGridItemEvent){
+        console.log("Method called - " + item.height + " ** " + item.width);
+	}
 	
-	
+	openDialogBox(){
+
+	}
+	minimizeBox(id:number):void {
+       console.log(this.showAdd[id])
+       if(this.showAdd[id]){
+           document.getElementById(""+id).style.height ="30px";
+           this.showAdd[id]=false;
+       }
+	   else{
+           document.getElementById(""+id).style.height ="290px";
+           this.showAdd[id]=true;
+		}
+    }
 	
 	private _randomise(): void {
 		for (var x in this.boxes) {

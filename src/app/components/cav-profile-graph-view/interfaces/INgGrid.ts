@@ -27,7 +27,7 @@ export interface NgGridItemConfig {
 	col?: number;
 	row?: number;
 	name?:string;
-	widgetId?:string;
+	widgetId?:number;
 	sizex?: number;
 	sizey?: number;
 	dragHandle?: string;
@@ -82,5 +82,5 @@ export interface NgLayoutGridOptions{
 	sizeX:number;
 	sizeY:number;
 	name:string;
-	widgetId:string;
+	widgetId:number;
 }
