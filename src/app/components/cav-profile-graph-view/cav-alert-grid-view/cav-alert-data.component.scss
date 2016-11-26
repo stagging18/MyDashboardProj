@@ -1,0 +1,14 @@
+.ui-datatable-header{ background: blue;} 
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    padding:6px;
+    line-height:0.1;
+    vertical-align:top;
+    border-top:1px solid rgba(221, 221, 221, 0.46);
+}
+.table-striped > tbody > tr:nth-of-type(2n+2){
+    background-color:rgba(221, 221, 221, 0.46);
+}
+table, td{
+    border-collapse:collapse;
+}
+            

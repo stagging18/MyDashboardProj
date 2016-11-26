@@ -178,6 +178,11 @@ private _generateDefaultItemConfig(): NgGridItemConfig {
 		this.col_width = this.TodoItems.col_width;
 		
 		this.cavLayoutService.setLayOutResponse(this.TodoItems);
+		
+		/*console.log("******************************************************");
+		console.log(this.TodoItems);
+		console.log("******************************************************");*/
+		
 
         for (var i = 0; i < this.TodoItems.panelLayout.widgets.length; i++) 
 		{

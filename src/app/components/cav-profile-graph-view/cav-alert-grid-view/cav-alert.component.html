@@ -1,0 +1,17 @@
+<div>
+  <table class="table table-striped" style="width:93%;font-size:11px;margin-left:16px" id="alertTableId">
+    <tr>
+      <td *ngFor="let col of columns"><span *ngIf="[col.header]!='imgForBuild'"><b>{{col.header}}</b></span></td>
+    </tr>
+    <tr *ngFor="let row of alertInfo">
+      <td *ngFor="let col of columns" style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:1px;">
+        <span *ngIf="[col.header]=='Severity'">
+          <span *ngIf="row[col.name]==1"><div  style="width:0%;padding:3px 3px;border-radius:25px;background-color:#CDDC39;margin-bottom:-2px;margin-top:-4px;"></div><span style="margin-left:9px">Minor</span></span>
+          <span *ngIf="row[col.name]==2"><div  style="width:0%;padding:3px 3px;border-radius:25px;background-color:red;margin-bottom:-2px;margin-top:-4px;"></div><span style="margin-left:9px">Major</span></span>
+          <span *ngIf="row[col.name]==3"><div  style="width:0%;padding:3px 3px;border-radius:25px;background-color:#bd372d;margin-bottom:-2px;margin-top:-4px;"></div><span style="margin-left:9px">Critical</span></span>
+        </span>
+        <span *ngIf="col.header!='Severity'"  title={{row[col.name]}}> {{row[col.name]}}</span>
+      </td>
+    </tr>
+  </table>
+</div>

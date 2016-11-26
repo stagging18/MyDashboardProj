@@ -6,8 +6,7 @@ import {Observable, } from 'rxjs/Rx';
 selector: 'test-run-info',
  templateUrl: 'cav-testrun.component.html',
   styleUrls: ['cav-testrun.component.css']
- 
-})
+ })
 
 export class  CavProfileGraphTestRun{
   

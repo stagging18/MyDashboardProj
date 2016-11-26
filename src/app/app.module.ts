@@ -23,6 +23,7 @@ import { CavMenuComponent } from './components/cav-menu/cav-menu.component';
 import { CavMenuItemComponent } from './components/cav-menu-item/cav-menu-item.component';
 
 import {CavProfileGraphTestRun} from './components/cav-profile-graph-view/cav-profile-test-run/cav-profile-graph-testrun.component';
+import {AlertComponent} from './components/cav-profile-graph-view/cav-alert-grid-view/cav-alert.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {CavProfileGraphTestRun} from './components/cav-profile-graph-view/cav-pr
     CavMainMenuNavignationComponent,
     CavMenuComponent,
     CavMenuItemComponent,
-	  CavProfileGraphTestRun,
+	CavProfileGraphTestRun,
+	AlertComponent,
   ],
   entryComponents: [
     AppComponent,
