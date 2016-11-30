@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
 import {Http, Response} from '@angular/http';
+import { Subject }    from 'rxjs/Subject';
+
+
 import {LayoutType, PanelLayout, WidgetStructor} from "../components/cav-profile-graph-view/interfaces/JsonLayoutDto";
+import {NgGridItemEvent, onResizeGridObj} from "../components/cav-profile-graph-view/interfaces/INgGrid";
 
 @Injectable()
 export class CavLayoutService {
 
   private layOutResponse:LayoutType;
+  private toggleClickPersonTest = new Subject<string>();
+
+  /*Observable string sources.*/
+  private onResizeMethodService = new Subject<onResizeGridObj>();
   constructor(private http:Http) {
    }
  
@@ -30,5 +38,13 @@ export class CavLayoutService {
   getLayOutResponse():LayoutType{
     return this.layOutResponse;
   }
+
+  onResizeFired(event:onResizeGridObj){
+    this.onResizeMethodService.next(event);
+
+  }
+
+  /*Service Observable for getting Menu Toggle Action.*/
+   testResizeMethodProvider$ =  this.onResizeMethodService.asObservable();
 
 }

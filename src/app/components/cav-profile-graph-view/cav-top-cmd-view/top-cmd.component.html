@@ -1,0 +1,65 @@
+<!--<div #resultsControlContainer>
+  <md-list>
+  <md-list-item class="md-textAlign">
+    <h3 md-line class="textAlign"> TOP </h3>
+    <p md-line>
+      <span class="p-fontsize"> {{topData["topDetails"]}} </span>
+    </p>
+    <md-divider class="md-divider-position"></md-divider>
+  </md-list-item>
+  <md-list-item class="md-textAlign">
+    <h3 md-line class="textAlign2"> Load Avg </h3>
+    <p md-line>
+      <span class="p-fontsize"> {{topData["loadAverageDetails"]}} </span>
+    </p>
+    <md-divider class="md-divider-position"></md-divider>
+  </md-list-item>
+  <md-list-item class="md-textAlign">
+    <h3 md-line class="textAlign"> Tasks </h3>
+    <p md-line>
+      <span class="p-fontsize"> {{topData["tasksDetails"]}}</span>
+    </p>
+    <md-divider class="md-divider-position"></md-divider>
+  </md-list-item>
+  <md-list-item class="md-textAlign">
+    <h3 md-line class="textAlign2"> CPU(S) </h3>
+    <p md-line>
+      <span class="p-fontsize">{{topData["cpuDetails"]}} </span>
+    </p>
+    <md-divider class="md-divider-position"></md-divider>
+  </md-list-item>
+  <md-list-item class="md-textAlign">
+    <h3 md-line class="textAlign"> Mem </h3>
+    <p md-line>
+      <span class="p-fontsize"> {{topData["memoryDetails"]}} </span>
+    </p>
+    <md-divider class="md-divider-position"></md-divider>
+  </md-list-item>
+  <md-list-item class="md-textAlign">
+    <h3 md-line class="textAlign"> Swap </h3>
+    <p md-line>
+      <span class="p-fontsize"> {{topData["swapDetails"]}} </span>
+    </p>
+    <md-divider class="md-divider-position"></md-divider>
+  </md-list-item>
+</md-list>
+</div>
+-->
+<div>
+<table class="table table-striped" style="width:100%;font-size:13px;" id="topTableId">
+<!--<tr>
+    <td *ngFor="let col of columns"><a (click)="sort(col.name)">{{col.descr}}</a></td>
+</tr>-->
+<tr *ngFor="let row of topInfoData">
+  <td>
+<span *ngFor="let col of columns">
+  <div *ngIf="[col.name]=='topName'"><b>{{row[col.name]}}</b><div style="float:right">1m ago</div></div>
+  <div *ngIf="[col.name]=='topcmdData'">{{row[col.name]}}</div>
+</span>
+</td>
+<!--<td>
+  1m ago
+</td>-->
+</tr>
+</table>
+</div>

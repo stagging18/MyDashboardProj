@@ -1,0 +1,37 @@
+  <div>
+  <div>
+  <img src="./images/hammer.jpg" style="height: 59px;width: 70px;margin-left: -38px;"/>
+<div style="font-size: 12px;margin-left: 22px;margin-top: -8px;">Build History</div>
+  </div>
+  <md-card class="mdcard">
+                <div style="margin-top:-27px;margin-left:-27px;">
+<div>
+              <md-card-title-media>
+                <img src="./images/eye.jpg" class="md-card-image" alt="Grass" style="width: 16%;float:left;margin-top:-7px">
+                </md-card-title-media>
+</div>
+<div>
+                  <md-card-title-text>
+                  <div style="font-size: 11px;margin-top:6px">Release Build #<span style="float:right;font-size: 10px;margin-left:12px;">24/11/2016, 02:35:50</span></div>
+                  <div style="font-size: 12px;margin-top:8px;margin-left:30px">{{this.buildInfoData.latestBuild}}</div>
+                  <div style="font-size: 10px;margin-left:49px;word-wrap:break-word;">Lorem ipsum dolor sit amet, consectetur adispiscing elit.</div>
+      </md-card-title-text>
+</div>
+                </div>
+            </md-card>
+   </div>
+  <footer>
+  <div>
+
+<table class="table table-striped" style="width:93%;font-size:14px;margin-left:16px">
+<tr>
+    <td *ngFor="let col of columns"><span *ngIf="[col.header]!='imgForBuild'"><b>{{col.header}}</b></span></td>
+</tr>
+<tr *ngFor="let row of buildInfo">
+<td *ngFor="let col of columns">
+  {{row[col.name]}}<span *ngIf="[col.header]=='imgForBuild'"><img src="./images/eye.jpg" style="width:17%;margin-top:-8px;margin-bottom:-5px;"></span>
+</td>
+</tr>
+</table>
+</div>
+</footer>

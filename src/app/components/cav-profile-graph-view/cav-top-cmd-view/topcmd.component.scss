@@ -1,0 +1,30 @@
+.md-divider-position{
+    width: 403px;
+    margin-left: 10px;
+    color:rgba(128, 128, 128, 0.34);
+    padding-top:16px;
+}
+
+.textAlign{
+    margin-right:370px;
+    font-size:13px;
+}
+.textAlign2{
+    margin-right:338px;
+    font-size:13px;
+}
+.md-textAlign{
+    margin-top:-14px;
+}
+
+.p-fontsize{
+    font-size:13px;
+}
+
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    padding:8px;
+    line-height:1.42857143;
+    vertical-align:top;
+    border-top:1px solid #ddd;
+}

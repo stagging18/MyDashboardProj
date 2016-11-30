@@ -56,6 +56,11 @@ export interface NgGridItemEvent {
 	top: number;
 }
 
+export interface onResizeGridObj{
+  eventData:NgGridItemEvent;
+  widgetId:number;
+}
+
 export interface NgGridItemSize {
 	x: number;
 	y: number;

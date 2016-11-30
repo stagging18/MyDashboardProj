@@ -1,7 +1,7 @@
 <div class="container">
     <div [ngGrid]="gridConfig">
 		<!--Looping the boxes to create the layouts-->
-	    <div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)" (onResizeStop)="onResizeStop($event)" (onDrag)="onDrag(i, $event)">
+	    <div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event, box)" (onResizeStop)="onResizeStop($event)" (onDrag)="onDrag(i, $event)">
 		    <!--This is the header part of all widgets-->
 			<div class="handle">
 				<!--Here we are setting the header name for all widgets -->
@@ -19,8 +19,14 @@
             <div *ngIf="[box.id]==1">
                 <test-run-info></test-run-info>
             </div>
+            <div *ngIf="[box.id]==4">
+                 <app-build></app-build>
+            </div>
 			<div *ngIf="[box.id]==5">
                  <app-alert></app-alert>
+            </div>
+            <div *ngIf="[box.id]==6">
+                 <app-top></app-top>
             </div>
 			<!--Header ends now put all components here-->
             <!--<chart [options]="options"></chart>-->

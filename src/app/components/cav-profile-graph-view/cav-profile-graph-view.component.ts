@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgGrid, NgGridItem} from 'angular2-grid';
-import {NgGridConfig,NgGridItemConfig,NgGridItemEvent, NgLayoutGridOptions} from "./interfaces/INgGrid";
+import {NgGridConfig,NgGridItemConfig,NgGridItemEvent, NgLayoutGridOptions, onResizeGridObj} from "./interfaces/INgGrid";
 import {CavLayoutService} from "../../services/cav-layout-provider.service";
 import {CavMenuNavigatorService} from "../../services/cav-menu-navigator.service";
 import {Observable, } from 'rxjs/Rx';
@@ -257,13 +257,15 @@ private _generateDefaultItemConfig(): NgGridItemConfig {
 	}
 	
 	onDrag(index: number, event: NgGridItemEvent): void {
-		// Do something here
-		console.log("**************** " + this.boxes[0].config.col);
 	}
-	
-	onResize(index: number, event: NgGridItemEvent): void {
-			//console.log("resize method called - "  , JSON.stringify(b.chart));
-		this.chartHeight = event.height-4;
+	test:onResizeGridObj = {"eventData":{"payload": 0,"col": 0,"row": 0,"sizex": 0,"sizey": 0,"width": 0,"height": 0,"left": 0,
+	"top": 0}, "widgetId":0};
+	//onResizeGridObj
+	onResize(index: number, event: NgGridItemEvent, box:Box): void {
+
+        this.test.eventData = event;
+		this.test.widgetId = box.config.widgetId;
+		this.cavLayoutService.onResizeFired(this.test);
 		
 	}
 
